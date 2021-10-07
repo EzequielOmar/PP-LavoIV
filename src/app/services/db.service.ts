@@ -7,7 +7,7 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class tabla-paises copyDbService {
+export class DbService {
   errorMessage = 'Error interno. Operación no realizada.';
   notExist = 'La busqueda no arrojó resultados.';
 
