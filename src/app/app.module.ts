@@ -11,8 +11,23 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from 'src/environments/environment';
+import { BienvenidaComponent } from './bienvenida/bienvenida.component';
+import { ErrorComponent } from './error/error.component';
+import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NavComponent } from './nav/nav.component';
+import { AltaProductoComponent } from './alta-producto/alta-producto.component';
+import { TablaPaisesComponent } from './tabla-paises/tabla-paises.component';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    BienvenidaComponent,
+    ErrorComponent,
+    LoginComponent,
+    NavComponent,
+    AltaProductoComponent,
+    TablaPaisesComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -20,6 +35,7 @@ import { environment } from 'src/environments/environment';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
