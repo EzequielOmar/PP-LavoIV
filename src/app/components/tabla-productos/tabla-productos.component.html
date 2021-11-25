@@ -1,0 +1,6 @@
+<ul class="list-group mb-3 w-auto">
+  <li [class.active]="producto===p" (click)="selectProducto(p)" *ngFor="let p of productos;let id"
+    class="list-group-item align-items-center lh-condensed">
+    <app-datos-producto [producto]="p"></app-datos-producto>
+  </li>
+</ul>

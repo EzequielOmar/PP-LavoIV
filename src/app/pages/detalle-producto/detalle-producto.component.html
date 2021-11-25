@@ -1,0 +1,23 @@
+<div class="container py-4">
+  <div class="p-2 mb-2 bg-light rounded-3">
+    <div class="container-fluid py-5">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted">Productos</span>
+      </h4>
+      <app-tabla-productos [productos]="productos" (productoSelected)="selectProduct($event)"></app-tabla-productos>
+    </div>
+  </div>
+
+  <div class="row align-items-md-stretch">
+    <div class="col-md-6">
+      <div *ngIf="productSelected" class="h-100 p-2 text-white bg-dark rounded-3">
+        <app-datos-producto class="p-2 py-5" [producto]="productSelected"></app-datos-producto>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="countryOfProduct" class="h-100 p-2 bg-light border rounded-3">
+        <app-datos-pais [pais]="countryOfProduct"></app-datos-pais>
+      </div>
+    </div>
+  </div>
+</div>

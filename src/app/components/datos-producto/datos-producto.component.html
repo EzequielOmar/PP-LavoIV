@@ -1,0 +1,19 @@
+<div class="row" style="width: 100%; text-transform: capitalize;">
+  <span>
+    {{producto?.producto?.nombre}}
+  </span>
+</div>
+<div class="row">
+  <span class="text-muted">{{producto?.producto?.descripcion}}</span>
+</div>
+<div class="row">
+  <div class="col-4">
+    <span class="text-muted"><strong>Precio: </strong>{{producto?.producto?.precio}}$ </span>
+  </div>
+  <div class="col-4">
+    <span class="text-muted"><strong>Stock:</strong>{{producto?.producto?.stock}} u.</span>
+  </div>
+  <div class="col-4">
+    <span class="text-muted">Fabricado en {{producto?.producto?.pais}}</span>
+  </div>
+</div>

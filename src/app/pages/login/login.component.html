@@ -1,0 +1,80 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <h2 class="active "> Entrá </h2>
+    <!--
+
+      <h2 class="inactive underlineHover" (click)=goToSignup()> Registráte </h2>
+    -->
+
+    <div *ngIf="spinner">
+      <span>esperando...</span>
+    </div>
+    <div *ngIf="error">
+      {{error}}
+    </div>
+
+    <!-- Login Form -->
+    <form *ngIf="!spinner" [formGroup]="form" (ngSubmit)="logIn()">
+
+      <input minlength=10 formControlName="email" required name="email" type="email" class="fadeIn first"
+        placeholder="correo">
+      <!--Errores-->
+      <div *ngIf="form.controls['email'].invalid && (submitted || form.controls['email'].touched)">
+        <div *ngIf="!(form.controls['email'].errors?.required);  else reqError">
+        </div>
+        <div *ngIf="!(form.controls['email'].errors?.minlength );  else minError">
+        </div>
+      </div>
+
+
+      <input pattern="[a-zA-Z ]*" minlength=3 maxlength=20 formControlName="pass" required name="pass" type="password"
+        class="fadeIn second" placeholder="clave" minlength=6>
+      <!--Errores-->
+      <div *ngIf="form.controls['pass'].invalid && (submitted || form.controls['pass'].touched)">
+        <div *ngIf="!(form.controls['pass'].errors?.required);  else reqError">
+        </div>
+        <div *ngIf="!(form.controls['pass'].errors?.pattern );  else patError">
+        </div>
+        <div *ngIf="!(form.controls['pass'].errors?.minlength );  else minError">
+        </div>
+        <div *ngIf="!(form.controls['pass'].errors?.maxlength );  else maxError">
+        </div>
+      </div>
+      <input type="submit" class="fadeIn third" value="Entrar">
+
+
+      <!--llenar datos usuario publico-->
+      <a (click)="fillForm('admin')">Entrá como Admin</a>
+      <a (click)="fillForm('empleado')">Entrá como Empleado</a>
+    </form>
+
+  </div>
+</div>
+
+
+<!--TEMPLATES DE ERRORES-->
+<!--ERROR -> Requerido-->
+<ng-template #reqError>
+  <div class="invalid-feedback d-block" style="width: 100%;">
+    *Este campo es obligatorio*
+  </div>
+</ng-template>
+<!--ERROR -> Patron incorrecto-->
+<ng-template #patError>
+  <div class="invalid-feedback d-block" style="width: 100%;">
+    *El formato del campo es incorrecto*
+  </div>
+</ng-template>
+<!--ERROR -> minimo-->
+<ng-template #minError>
+  <div class="invalid-feedback d-block" style="width: 100%;">
+    *El valor de este campo es muy corto/bajo*
+  </div>
+</ng-template>
+<!--ERROR -> maximo-->
+<ng-template #maxError>
+  <div class="invalid-feedback d-block" style="width: 100%;">
+    *El valor de este campo es muy largo/alto*
+  </div>
+</ng-template>

@@ -1,0 +1,16 @@
+<div *ngIf="modifContainer" class="card mb-4 shadow-sm">
+  <div class="card-header">
+    <h4 class="my-0 font-weight-normal">Modificar Container</h4>
+  </div>
+  <div class="card-body">
+    <label for="marca">Marca</label>
+    <input readonly type="text" [(ngModel)]="modifContainer.codigo"><br>
+
+    <label for="marca">Marca</label>
+    <input type="text" pattern="[a-zA-Z ]*" [(ngModel)]="modifContainer.marca"><br>
+    <label for="capacidad">Capacidad</label>
+    <input type="number" pattern="[0-9]*" [(ngModel)]="modifContainer.capacidad">
+    <button type="button" class="btn btn-lg btn-block btn-outline-primary"
+      (click)="modificarContainer()">Modificar</button>
+  </div>
+</div>

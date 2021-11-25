@@ -40,4 +40,27 @@ export class DbService {
         throw new Error(this.errorMessage);
       });
   };
+
+  /*
+   * Guarda (o sobreescribe si existe) el dato
+   * en el docName(id) del database ingresado.
+   * @param database nombre de database (si no existe se crea)
+   * @param docName nombre del docName (si existe se sobreescribe, si no se crea)
+   * @param data datos a guardar en documento (puede ser cualquier objeto)
+   * * Exito -> sin retorno | Error -> imprime error, y retorna mensaje para imprimir en pantalla *
+   */
+  setWithId = async (database: string, docName: string, data: any) => {
+    await this.db
+      .collection(database)
+      .doc(docName)
+      .set(data)
+      .catch((error) => {
+        console.log(error);
+        throw new Error(this.errorMessage);
+      });
+  };
+
+  delete = async (database: string, docName: string) => {
+    await this.db.collection(database).doc(docName).delete();
+  };
 }

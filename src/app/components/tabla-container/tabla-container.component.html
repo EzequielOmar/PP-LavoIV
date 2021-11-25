@@ -1,0 +1,11 @@
+<h4 class="d-flex justify-content-between align-items-center mb-3">
+  <span class="text-muted">Contenedores</span>
+</h4>
+<ul class="list-group mb-3">
+  <li (click)="selectContenedor(c)" *ngFor="let c of containers"
+    class="list-group-item d-flex justify-content-between align-items-center lh-condensed">
+    <span class="text-muted">{{c.codigo}}</span><br>
+    <strong> Marca:</strong> <span class="text-muted">{{c.marca}}</span><br>
+    <strong> Capacidad:</strong><span class="text-muted">{{c.capacidad}}</span> u.<br>
+  </li>
+</ul>

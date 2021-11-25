@@ -1,12 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ErrorComponent } from './error/error.component';
+import { ErrorComponent } from './pages/error/error.component';
+import {
+  AngularFireAuthGuard,
+  redirectUnauthorizedTo,
+} from '@angular/fire/compat/auth-guard';
+import { E_TipoUsuario } from './classes/usuario';
+import { UserTypeGuardService } from './services/user-type-auth.service';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/login']);
 
 const routes: Routes = [
   {
     path: 'home',
     loadChildren: () =>
-      import('./bienvenida/bienvenida.module')
+      import('./pages/bienvenida/bienvenida.module')
         .then((m: any) => {
           return m.BienvenidaModule;
         })
@@ -17,7 +25,7 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () =>
-      import('./login/login.module')
+      import('./pages/login/login.module')
         .then((m: any) => {
           return m.LoginModule;
         })
@@ -27,14 +35,36 @@ const routes: Routes = [
   },
   {
     path: 'producto/alta',
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
     loadChildren: () =>
-      import('./alta-producto/alta-producto.module')
+      import('./pages/alta-producto/alta-producto.module')
         .then((m: any) => {
           return m.AltaProductoModule;
         })
         .catch((e) => {
           console.log(e);
         }),
+  },
+  {
+    path: 'producto/detalle',
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+    loadChildren: () =>
+      import('./pages/detalle-producto/detalle-producto.module').then(
+        (m) => m.DetalleProductoModule
+      ),
+  },
+  {
+    path: 'container/abm',
+    canActivate: [UserTypeGuardService],
+    data: {
+      expectedType: E_TipoUsuario.admin,
+    },
+    loadChildren: () =>
+      import('./pages/abm-container/abm-container.module').then(
+        (m) => m.AbmContainerModule
+      ),
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: ErrorComponent },

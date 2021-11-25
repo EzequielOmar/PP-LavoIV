@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable } from 'rxjs';
 import firebase from 'firebase/compat/app';
-import { Validator } from './validators';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +10,10 @@ export class AuthService {
   private user: Observable<firebase.User | null>;
   constructor(private angularFireAuth: AngularFireAuth) {
     this.user = angularFireAuth.authState;
+  }
+
+  get authUserObservable(): Observable<firebase.User | null> {
+    return this.angularFireAuth.authState;
   }
 
   // Obtener el estado de autenticación
@@ -38,7 +41,7 @@ export class AuthService {
    * @param password string password del usuario  */
   signIn = async (email: string, password: string) =>
     await this.angularFireAuth
-      .signInWithEmailAndPassword(Validator.email(email), password)
+      .signInWithEmailAndPassword(email, password)
       .then((res) => res)
       .catch((error) => {
         if (error.code === 'auth/user-disabled') {
