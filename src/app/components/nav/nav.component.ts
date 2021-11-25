@@ -34,6 +34,10 @@ export class NavComponent implements OnInit {
     this.router.navigate(['container/abm']);
   }
 
+  gotoCargaContainer(){
+    this.router.navigate(['container/cargar']);
+  }
+
   logOut() {
     this.auth.signOut().then(() => {
       this.router.navigate(['home']);

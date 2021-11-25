@@ -34,11 +34,12 @@ export class AbmContainerComponent implements OnInit {
     this.db.getObserver(dbName_Containers).onSnapshot((snap) => {
       this.containers = [];
       snap.forEach((doc) => {
-        let { marca, capacidad } = doc.data() as Contenedor;
+        let { marca, capacidad, stock } = doc.data() as Contenedor;
         let c: Contenedor = {
           codigo: doc.id,
           marca: marca,
           capacidad: capacidad,
+          stock: stock,
         };
         this.containers.push(c);
       });

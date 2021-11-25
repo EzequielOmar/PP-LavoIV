@@ -9,7 +9,12 @@ import { Contenedor } from 'src/app/classes/container';
 })
 export class DatosContainerComponent implements OnInit {
   @Output() newContainer: EventEmitter<any> = new EventEmitter<any>();
-  nuevoContainer: Contenedor = { codigo: '', marca: '', capacidad: 0 };
+  nuevoContainer: Contenedor = {
+    codigo: '',
+    marca: '',
+    capacidad: 0,
+    stock: [],
+  };
   constructor() {}
 
   ngOnInit(): void {}

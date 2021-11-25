@@ -3,21 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { DetalleProductoRoutingModule } from './detalle-producto-routing.module';
 import { DetalleProductoComponent } from './detalle-producto.component';
-import { TablaProductosComponent } from '../../components/tabla-productos/tabla-productos.component';
-import { DatosProductoComponent } from '../../components/datos-producto/datos-producto.component';
 import { DatosPaisComponent } from '../../components/datos-pais/datos-pais.component';
-
+import { SharedComponentsModule } from 'src/app/modules/shared-components/shared-components.module';
 
 @NgModule({
-  declarations: [
-    DetalleProductoComponent,
-    TablaProductosComponent,
-    DatosProductoComponent,
-    DatosPaisComponent
-  ],
-  imports: [
-    CommonModule,
-    DetalleProductoRoutingModule
-  ]
+  declarations: [DetalleProductoComponent, DatosPaisComponent],
+  imports: [CommonModule, DetalleProductoRoutingModule, SharedComponentsModule],
 })
-export class DetalleProductoModule { }
+export class DetalleProductoModule {}

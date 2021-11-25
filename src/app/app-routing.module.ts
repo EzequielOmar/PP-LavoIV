@@ -66,6 +66,15 @@ const routes: Routes = [
         (m) => m.AbmContainerModule
       ),
   },
+  {
+    path: 'container/cargar',
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+    loadChildren: () =>
+      import('./pages/cargar-container/cargar-container.module').then(
+        (m) => m.CargarContainerModule
+      ),
+  },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: ErrorComponent },
 ];
